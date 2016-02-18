@@ -1,3 +1,6 @@
+ImageIdentifier:
+
+
 CONTENTS OF THIS FILE
 ---------------------
    
@@ -5,7 +8,7 @@ CONTENTS OF THIS FILE
  * Requirements
 
 
- INTRODUCTION
+INTRODUCTION
 ------------
 
 This project is a starting point for giving an example of how to find different
