@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Imageidentifier by ZeroTemplate</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Imageidentifier</h1>
+        <p>Small application for identifying images based on the header data.</p>
+
+        <p class="view"><a href="https://github.com/ZeroTemplate/ImageIdentifier">View the Project on GitHub <small>ZeroTemplate/ImageIdentifier</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/ZeroTemplate/ImageIdentifier/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ZeroTemplate/ImageIdentifier/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ZeroTemplate/ImageIdentifier">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>
+<a id="image-identifier" class="anchor" href="#image-identifier" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Image Identifier</h3>
+
+<p>This is a simple application that matches the known headers of files with the known human readable ones (JPG/BMP ... and so on).
+For now only 2 of those are implemented (JPG and BMP) in the next iterations new ones will be added.</p>
+
+<h3>
+<a id="how-it-works" class="anchor" href="#how-it-works" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How it works</h3>
+
+<p>Each image has it's own class, using the factory method for linking the file with the needed class. (needed for future expanding of the requirements)
+The logic of finding and creating each object for the files is located in the factory <code>fileFactory</code> class. </p>
+
+<p>For example the BMP and JPG headers are stored like this:</p>
+
+<p><code>std::vector&lt;std::uint8_t&gt; BMPBytes = {0x42, 0x4D};
+        std::vector&lt;std::uint8_t&gt; JPGBytes = {0xFF, 0xD8, 0xFF};</code></p>
+
+<p>For expanding the existing code, there are 2 steps:</p>
+
+<ul>
+<li>creating a new class <code>file&lt;imageType&gt;</code> and inherit the existing <code>imageFile</code> class.</li>
+<li>extend the existing factory class to include the new image type :
+
+<ul>
+<li>by incrementing the number of existing <code>IMG_OBJ_CODED</code>
+</li>
+<li>by adding the new type into the existing <code>enum IMG_TYPE</code>
+</li>
+<li>by adding the new header into the constructor:</li>
+</ul>
+</li>
+</ul>
+
+<p><code>fileFactory() {</code>
+              <code>std::vector&lt;std::uint8_t&gt; BMPBytes = {0x42, 0x4D};</code>
+              <code>std::vector&lt;std::uint8_t&gt; JPGBytes = {0xFF, 0xD8, 0xFF};</code>
+              <code>Register(IMG_TYPE::BMP, &amp;fileBMP::Create, BMPBytes);</code>
+              <code>Register(IMG_TYPE::JPG, &amp;fileJPG::Create, JPGBytes);</code>
+           <code>}</code></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/ZeroTemplate">ZeroTemplate</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
